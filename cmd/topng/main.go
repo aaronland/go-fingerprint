@@ -13,7 +13,7 @@ func main() {
 	w, h := 375, 511
 
 	factor := 8
-	
+
 	w = w * factor
 	h = h * factor
 	in, err := os.Open("in.svg")
