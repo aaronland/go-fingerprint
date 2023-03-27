@@ -1,40 +1,60 @@
 package main
 
 import (
-	"image"
+	"flag"
 	"image/png"
 	"os"
-
-	"github.com/srwiley/oksvg"
-	"github.com/srwiley/rasterx"
+	"path/filepath"
+	"strings"
+	
+	"github.com/aaronland/go-fingerprint"
 )
 
 func main() {
+
+	flag.Parse()
+	
 	w, h := 375, 511
 
 	factor := 8
 
 	w = w * factor
 	h = h * factor
-	in, err := os.Open("in.svg")
-	if err != nil {
-		panic(err)
-	}
-	defer in.Close()
 
-	icon, _ := oksvg.ReadIconStream(in)
-	icon.SetTarget(0, 0, float64(w), float64(h))
-	rgba := image.NewRGBA(image.Rect(0, 0, w, h))
-	icon.Draw(rasterx.NewDasher(w, h, rasterx.NewScannerGV(w, h, rgba, rgba.Bounds())), 1)
 
-	out, err := os.Create("out.png")
-	if err != nil {
-		panic(err)
-	}
-	defer out.Close()
+	for _, path := range flag.Args(){
 
-	err = png.Encode(out, rgba)
-	if err != nil {
-		panic(err)
+		root := filepath.Dir(path)
+		fname := filepath.Base(path)
+		
+		r, err := os.Open(path)
+		if err != nil {
+			panic(err)
+		}
+		defer r.Close()
+		
+		im, err := fingerprint.ToImage(r, w, h)
+		
+		if err != nil {
+			panic(err)
+		}
+
+		im = fingerprint.ToAdobeRGB(im)
+			
+		out_fname := strings.Replace(fname, ".svg", ".png", 1)
+		out_path := filepath.Join(root, out_fname)
+		
+		out, err := os.Create(out_path)
+		
+		if err != nil {
+			panic(err)
+		}
+		defer out.Close()
+		
+		err = png.Encode(out, im)
+		
+		if err != nil {
+			panic(err)
+		}
 	}
 }
