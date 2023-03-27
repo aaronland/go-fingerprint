@@ -3,6 +3,8 @@ package fingerprint
 import (
 	"fmt"
 	"image"
+	"image/color"
+	"image/draw"
 	"io"
 	"runtime"
 
@@ -26,6 +28,8 @@ func ToImage(r io.Reader, w int, h int) (image.Image, error) {
 	im := image.NewRGBA(image.Rect(0, 0, w, h))
 	icon.Draw(rasterx.NewDasher(w, h, rasterx.NewScannerGV(w, h, im, im.Bounds())), 1)
 
+	// background stuff
+
 	return im, nil
 }
 
@@ -43,6 +47,18 @@ func ToAdobeRGB(im image.Image) image.Image {
 			new_im.SetNRGBA(j, i, outCol.ToNRGBA(alpha))
 		}
 	}
+
+	return new_im
+}
+
+func AddBackground(im image.Image) image.Image {
+
+	backgroundColor := color.NRGBA{0xff, 0xff, 0xff, 0xff}
+
+	new_im := image.NewNRGBA(im.Bounds())
+
+	draw.Draw(new_im, new_im.Bounds(), image.NewUniform(backgroundColor), image.Point{}, draw.Src)
+	draw.Draw(new_im, new_im.Bounds(), im, im.Bounds().Min, draw.Over)
 
 	return new_im
 }
