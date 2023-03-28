@@ -19,7 +19,12 @@ go build -mod vendor -ldflags="-s -w" -o bin/convert cmd/convert/main.go
 $> ./bin/convert -h
 Convert one or more fingerprint SVG documents in to JPEG images.
 
-The final JPEG image is scaled to ensure that its maximum dimension is 'max_dimension'. Date information defined in the SVG document's `x-fingerprint-date` attribute is written to the final JPEG image's `DateTime`, `DateTimeDigitized` and `DateTimeOriginal` EXIF headers. The final JPEG representation is updated to ensure that all pixel values match the Adobe RGB colour profile. JPEG images are written to the same location as the source SVG document with a '.jpg' extension.
+The final JPEG image is scaled to ensure that its maximum dimension is
+'max_dimension'. Date information defined in the SVG document's `x-fingerprint-date`
+attribute is written to the final JPEG image's `DateTime`, `DateTimeDigitized` and
+`DateTimeOriginal` EXIF headers. The final JPEG representation is updated to ensure that
+all pixel values match the Adobe RGB colour profile. JPEG images are written to the same
+location as the source SVG document with a '.jpg' extension.
 
 Usage:
 	 ./bin/convert path(N) path(N)

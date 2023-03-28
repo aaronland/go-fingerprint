@@ -17,7 +17,12 @@ func main() {
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Convert one or more fingerprint SVG documents in to JPEG images.\n\n")
-		fmt.Fprintf(os.Stderr, "The final JPEG image is scaled to ensure that its maximum dimension is 'max_dimension'. Date information defined in the SVG document's `x-fingerprint-date` attribute is written to the final JPEG image's `DateTime`, `DateTimeDigitized` and `DateTimeOriginal` EXIF headers. The final JPEG representation is updated to ensure that all pixel values match the Adobe RGB colour profile. JPEG images are written to the same location as the source SVG document with a '.jpg' extension.\n\n")
+		fmt.Fprintf(os.Stderr, "The final JPEG image is scaled to ensure that its maximum dimension is\n")
+		fmt.Fprintf(os.Stderr, "'max_dimension'. Date information defined in the SVG document's `x-fingerprint-date`\n")
+		fmt.Fprintf(os.Stderr, "attribute is written to the final JPEG image's `DateTime`, `DateTimeDigitized` and\n")
+		fmt.Fprintf(os.Stderr, "`DateTimeOriginal` EXIF headers. The final JPEG representation is updated to ensure that\n")
+		fmt.Fprintf(os.Stderr, "all pixel values match the Adobe RGB colour profile. JPEG images are written to the same\n")
+		fmt.Fprintf(os.Stderr, "location as the source SVG document with a '.jpg' extension.\n\n")
 		fmt.Fprintf(os.Stderr, "Usage:\n\t %s path(N) path(N)\n\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Valid options are:\n")
 		flag.PrintDefaults()
