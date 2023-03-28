@@ -1,6 +1,6 @@
 # go-fingerprint
 
-Go package for working with SVG files produced by aaronland/fingerprint.
+Go package for working with SVG files produced by the `aaronland/fingerprint` drawing tool
 
 ## Documentation
 
