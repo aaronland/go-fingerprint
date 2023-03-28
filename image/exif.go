@@ -11,6 +11,9 @@ import (
 	"github.com/sfomuseum/go-exif-update"
 )
 
+// AppendTime appends the RFC3339-encoded value or 't' to the JPEG encoding of 'im'
+// in its `DateTime`, `DateTimeDigitized` and `DateTimeOriginal` EXIF headers. The
+// final JPEG encoding of 'im' is written to 'wr'.
 func AppendTime(im image.Image, wr io.Writer, t time.Time) error {
 
 	temp_wr, err := os.CreateTemp("", "fingerprint.*.jpg")

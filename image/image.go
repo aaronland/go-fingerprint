@@ -11,6 +11,7 @@ import (
 	"github.com/mandykoh/prism/srgb"
 )
 
+// ToAdobeRGB converts all the coloura in 'im' to match the Adobe RGB colour profile.
 func ToAdobeRGB(im image.Image) image.Image {
 
 	input_im := prism.ConvertImageToNRGBA(im, runtime.NumCPU())
@@ -29,6 +30,8 @@ func ToAdobeRGB(im image.Image) image.Image {
 	return new_im
 }
 
+// AddBackground draws 'im' on to a new `image.Image` instance of the same dimensions but with
+// a white background.
 func AddBackground(im image.Image) image.Image {
 
 	backgroundColor := color.NRGBA{0xff, 0xff, 0xff, 0xff}
