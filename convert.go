@@ -2,8 +2,8 @@ package fingerprint
 
 import (
 	"fmt"
+	_ "image/png"
 	"io"
-	"math"
 	"time"
 
 	"github.com/aaronland/go-fingerprint/image"
@@ -17,7 +17,7 @@ import (
 // ensure that all pixel values match the Adobe RGB colour profile.
 func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) error {
 
-	doc, err := svg.Parse(r)
+	doc, err := svg.Unmarshal(r)
 
 	if err != nil {
 		return fmt.Errorf("Failed to derive doc, %w", err)
@@ -32,32 +32,10 @@ func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) error {
 		return fmt.Errorf("Failed to parse date (%s), %w", doc.Date, err)
 	}
 
-	w := doc.Width
-	h := doc.Height
-
-	if max_dimension > 0 {
-
-		max := math.Max(float64(w), float64(h))
-		scale := 1.0
-
-		if max_dimension > max {
-			scale = max_dimension / max
-		}
-
-		w = int(float64(w) * scale)
-		h = int(float64(h) * scale)
-	}
-
-	_, err = r.Seek(0, 0)
+	im, err := doc.ToImage(max_dimension)
 
 	if err != nil {
-		return fmt.Errorf("Failed to rewind reader, %w", err)
-	}
-
-	im, err := svg.ToImage(r, w, h)
-
-	if err != nil {
-		return fmt.Errorf("Failed to render image, %w", err)
+		return fmt.Errorf("Failed to create image, %w", err)
 	}
 
 	im = image.ToAdobeRGB(im)
