@@ -24,6 +24,7 @@ type Document struct {
 	Paths []*Path `xml:"path"`
 }
 
+// ToImage will rasterize 'doc' and return it as an `image.Image` instance whose maximum dimension is scaled to 'max_dimension'
 func (doc *Document) ToImage(max_dimension float64) (image.Image, error) {
 
 	w := doc.Width
@@ -79,6 +80,7 @@ type Path struct {
 	D string `xml:"d,attr"`
 }
 
+// HexColor will return the 8-digit hexidecial color (fill + fill opacity) for the path
 func (p *Path) HexColor() string {
 
 	fill := p.Fill
