@@ -37,7 +37,6 @@ Valid options are:
 ## See also
 
 * https://github.com/aaronland/fingerprint
-* https://github.com/srwiley/oksvg
-* https://github.com/srwiley/rasterx
+* https://github.com/fogleman/gg
 * https://github.com/mandykoh/prism
 * https://github.com/sfomuseum/go-exif-update
