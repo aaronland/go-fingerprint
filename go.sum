@@ -22,6 +22,10 @@ github.com/dsoprea/go-utility/v2 v2.0.0-20221003142440-7a1927d49d9d/go.mod h1:LV
 github.com/dsoprea/go-utility/v2 v2.0.0-20221003160719-7bc88537c05e/go.mod h1:VZ7cB0pTjm1ADBWhJUOHESu4ZYy9JN+ZPqjfiW09EPU=
 github.com/dsoprea/go-utility/v2 v2.0.0-20221003172846-a3e1774ef349 h1:DilThiXje0z+3UQ5YjYiSRRzVdtamFpvBQXKwMglWqw=
 github.com/dsoprea/go-utility/v2 v2.0.0-20221003172846-a3e1774ef349/go.mod h1:4GC5sXji84i/p+irqghpPFZBF8tRN/Q7+700G0/DLe8=
+github.com/fogleman/colormap v0.0.0-20180829212827-f273ae61505a h1:XICifY62zvizwkphPuA57wDYZfqRmMUzwrel97gaARA=
+github.com/fogleman/colormap v0.0.0-20180829212827-f273ae61505a/go.mod h1:z9NBSuDB250ognz0ojF3VtNE2v/pF0BU0/rS14fpmno=
+github.com/fogleman/contourmap v0.0.0-20190814184649-9f61d36c4199 h1:kufr0u0RIG5ACpjFsPRbbuHa0FhMWsS3tnSFZ2hf07s=
+github.com/fogleman/contourmap v0.0.0-20190814184649-9f61d36c4199/go.mod h1:mqaaaP4j7nTF8T/hx5OCljA7BYWHmrH2uh+Q023OchE=
 github.com/fogleman/gg v1.3.0 h1:/7zJX8F6AaYQc57WQCyN9cAIz+4bCJGO9B+dyW29am8=
 github.com/fogleman/gg v1.3.0/go.mod h1:R/bRT+9gY/C5z7JzPU0zXsXHKM4/ayA+zqcVNZzPa1k=
 github.com/go-errors/errors v1.0.1/go.mod h1:f4zRHt4oKfwPJE5k8C9vpYG+aDHdBFUsgrm6/TyX73Q=
