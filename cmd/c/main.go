@@ -12,6 +12,7 @@ import (
 
 	"image"
 	_ "image/png"
+	_ "image/jpeg"	
 )
 
 const (
@@ -58,7 +59,7 @@ func main() {
 
 	dc := gg.NewContext(w, h)
 	dc.SetRGB(1, 1, 1)
-	// dc.SetColor(colormap.ParseColor(Background))
+	dc.SetColor(colormap.ParseColor(Background))
 	dc.Clear()
 	dc.Scale(Scale, Scale)
 
@@ -74,9 +75,10 @@ func main() {
 			}
 		}
 		dc.SetColor(pal.At(t))
-		// dc.FillPreserve()
+		dc.FillPreserve()
 		dc.SetRGB(0, 0, 0)
-		dc.SetLineWidth(5)
+		// dc.SetLineWidth(5)
+		dc.SetLineWidth(1)		
 		dc.Stroke()
 	}
 
