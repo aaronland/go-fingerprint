@@ -53,7 +53,7 @@ github.com/mandykoh/prism/linear
 github.com/mandykoh/prism/linear/lut
 github.com/mandykoh/prism/matrix
 github.com/mandykoh/prism/srgb
-# github.com/sfomuseum/go-exif-update v0.1.1
+# github.com/sfomuseum/go-exif-update v0.1.2
 ## explicit; go 1.18
 github.com/sfomuseum/go-exif-update
 github.com/sfomuseum/go-exif-update/tags
@@ -64,7 +64,7 @@ golang.org/x/image/font
 golang.org/x/image/font/basicfont
 golang.org/x/image/math/f64
 golang.org/x/image/math/fixed
-# golang.org/x/net v0.0.0-20221002022538-bcab6841153b
+# golang.org/x/net v0.7.0
 ## explicit; go 1.17
 golang.org/x/net/context
 # gopkg.in/yaml.v2 v2.4.0

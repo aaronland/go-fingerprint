@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/fogleman/gg v1.3.0
 	github.com/mandykoh/prism v0.35.1
-	github.com/sfomuseum/go-exif-update v0.1.1
+	github.com/sfomuseum/go-exif-update v0.1.2
 )
 
 require (
@@ -21,6 +21,6 @@ require (
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/mandykoh/go-parallel v0.1.0 // indirect
 	golang.org/x/image v0.5.0 // indirect
-	golang.org/x/net v0.0.0-20221002022538-bcab6841153b // indirect
+	golang.org/x/net v0.7.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

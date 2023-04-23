@@ -48,7 +48,8 @@ func AppendTime(im image.Image, wr io.Writer, t time.Time) error {
 
 	defer jpeg_r.Close()
 
-	jpeg_dt := t.Format(time.RFC3339)
+	// https://github.com/rwcarlsen/goexif/blob/go1/exif/exif.go#L385
+	jpeg_dt := t.Format("2006:01:02 15:04:05")	//  time.RFC3339)
 
 	exif_props := map[string]interface{}{
 		"DateTime":          jpeg_dt,
