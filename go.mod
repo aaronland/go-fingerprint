@@ -3,12 +3,12 @@ module github.com/aaronland/go-fingerprint
 go 1.20
 
 require (
+	github.com/aaronland/go-image v1.1.0
 	github.com/fogleman/gg v1.3.0
-	github.com/mandykoh/prism v0.35.1
-	github.com/sfomuseum/go-exif-update v0.1.2
 )
 
 require (
+	github.com/aaronland/go-roster v1.0.0 // indirect
 	github.com/dsoprea/go-exif/v3 v3.0.0-20221012082141-d21ac8e2de85 // indirect
 	github.com/dsoprea/go-iptc v0.0.0-20200609062250-162ae6b44feb // indirect
 	github.com/dsoprea/go-jpeg-image-structure/v2 v2.0.0-20221012074422-4f3f7e934102 // indirect
@@ -20,6 +20,8 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/mandykoh/go-parallel v0.1.0 // indirect
+	github.com/mandykoh/prism v0.35.1 // indirect
+	github.com/sfomuseum/go-exif-update v0.1.2 // indirect
 	golang.org/x/image v0.5.0 // indirect
 	golang.org/x/net v0.7.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
