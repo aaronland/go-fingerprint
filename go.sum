@@ -1,3 +1,7 @@
+github.com/aaronland/go-image v1.1.0 h1:6hUwg1jtdjiEBOH93rKTevh9NyQhL13cYSkInLptahA=
+github.com/aaronland/go-image v1.1.0/go.mod h1:m3fGqdWxpfMOuTY15iWeRAdGJpeA474+o+Ycon/8O3g=
+github.com/aaronland/go-roster v1.0.0 h1:FRDGrTqsYySKjWnAhbBGXyeGlI/o5/t9FZYCbUmyQtI=
+github.com/aaronland/go-roster v1.0.0/go.mod h1:KIsYZgrJlAsyb9LsXSCvlqvbcCBVjCSqcQiZx42i9ro=
 github.com/dsoprea/go-exif/v2 v2.0.0-20200321225314-640175a69fe4/go.mod h1:Lm2lMM2zx8p4a34ZemkaUV95AnMl4ZvLbCUbwOvLC2E=
 github.com/dsoprea/go-exif/v3 v3.0.0-20200717053412-08f1b6708903/go.mod h1:0nsO1ce0mh5czxGeLo4+OCZ/C6Eo6ZlMWsz7rH/Gxv8=
 github.com/dsoprea/go-exif/v3 v3.0.0-20210428042052-dca55bf8ca15/go.mod h1:cg5SNYKHMmzxsr9X6ZeLh/nfBRHHp5PngtEPcujONtk=
@@ -43,6 +47,7 @@ github.com/mandykoh/go-parallel v0.1.0 h1:7vJMNMC4dsbgZdkAb2A8tV5ENY1v7VxIO1wzQW
 github.com/mandykoh/go-parallel v0.1.0/go.mod h1:lkYHqG1JNTaSS6lG+PgFCnyMd2VDy8pH9jN9pY899ig=
 github.com/mandykoh/prism v0.35.1 h1:JbQfQarANxSWlgJEpjv+E7DvtrqBaVP1YgJfZPvo6ME=
 github.com/mandykoh/prism v0.35.1/go.mod h1:3miB3EAJ0IggYl/4eBB5MmawRbyJI1gKDtbrVvk8Q9I=
+github.com/rwcarlsen/goexif v0.0.0-20190401172101-9e8deecbddbd h1:CmH9+J6ZSsIjUK3dcGsnCnO41eRBOnY12zwkn5qVwgc=
 github.com/sfomuseum/go-exif-update v0.1.2 h1:Cfz7VqSEFjKupZHd+XSNYiITMKzsPKpWrei8sgWvHfg=
 github.com/sfomuseum/go-exif-update v0.1.2/go.mod h1:fx7BaSdVygF4HdnBe3kJD6u6fpW7ZSUMWuP+FV1sYPo=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
