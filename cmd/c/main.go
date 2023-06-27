@@ -1,18 +1,18 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"os"
-	"flag"
-	
+
+	_ "github.com/aaronland/go-fingerprint/svg"
 	"github.com/fogleman/colormap"
 	"github.com/fogleman/contourmap"
 	"github.com/fogleman/gg"
-	_ "github.com/aaronland/go-fingerprint/svg"
 
 	"image"
+	_ "image/jpeg"
 	_ "image/png"
-	_ "image/jpeg"	
 )
 
 const (
@@ -29,27 +29,27 @@ func main() {
 	p := flag.Args()[0]
 
 	r, err := os.Open(p)
-	
+
 	if err != nil {
 		log.Fatalf("Failed to open %s, %v", p, err)
 	}
-	
+
 	defer r.Close()
 
 	/*
-	d, err := svg.Unmarshal(r)
-	
-	if err != nil {
-		log.Fatalf("Failed to unmarshal %s, %v", p, err)
-	}
+		d, err := svg.Unmarshal(r)
 
-	im, _ := d.ToImage(4096)
+		if err != nil {
+			log.Fatalf("Failed to unmarshal %s, %v", p, err)
+		}
+
+		im, _ := d.ToImage(4096)
 	*/
 
 	im, _, _ := image.Decode(r)
-	
+
 	//
-	
+
 	m := contourmap.FromImage(im).Closed()
 	z0 := m.Min
 	z1 := m.Max
@@ -78,7 +78,7 @@ func main() {
 		dc.FillPreserve()
 		dc.SetRGB(0, 0, 0)
 		// dc.SetLineWidth(5)
-		dc.SetLineWidth(1)		
+		dc.SetLineWidth(1)
 		dc.Stroke()
 	}
 
