@@ -3,9 +3,7 @@ module github.com/aaronland/go-fingerprint
 go 1.20
 
 require (
-	github.com/aaronland/go-image v1.2.1
-	github.com/fogleman/colormap v0.0.0-20180829212827-f273ae61505a
-	github.com/fogleman/contourmap v0.0.0-20190814184649-9f61d36c4199
+	github.com/aaronland/go-image v1.2.2
 	github.com/fogleman/gg v1.3.0
 	github.com/mandykoh/prism v0.35.1
 	github.com/sfomuseum/go-exif-update v0.1.2
@@ -25,6 +23,6 @@ require (
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/mandykoh/go-parallel v0.1.0 // indirect
 	golang.org/x/image v0.5.0 // indirect
-	golang.org/x/net v0.7.0 // indirect
+	golang.org/x/net v0.11.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

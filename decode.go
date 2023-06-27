@@ -18,7 +18,7 @@ type FingerprintDecoder struct {
 
 func init() {
 	ctx := context.Background()
-	decode.RegisterDecoder(ctx, NewFingerprintDecoder, "fingerprint")
+	decode.RegisterDecoder(ctx, NewFingerprintDecoder, "svg")
 }
 
 func NewFingerprintDecoder(ctx context.Context, uri string) (decode.Decoder, error) {

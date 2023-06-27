@@ -1,4 +1,4 @@
-# github.com/aaronland/go-image v1.2.1
+# github.com/aaronland/go-image v1.2.2
 ## explicit; go 1.20
 github.com/aaronland/go-image/decode
 # github.com/aaronland/go-roster v1.0.0
@@ -25,12 +25,6 @@ github.com/dsoprea/go-photoshop-info-format
 ## explicit; go 1.12
 github.com/dsoprea/go-utility/v2/filesystem
 github.com/dsoprea/go-utility/v2/image
-# github.com/fogleman/colormap v0.0.0-20180829212827-f273ae61505a
-## explicit
-github.com/fogleman/colormap
-# github.com/fogleman/contourmap v0.0.0-20190814184649-9f61d36c4199
-## explicit
-github.com/fogleman/contourmap
 # github.com/fogleman/gg v1.3.0
 ## explicit
 github.com/fogleman/gg
@@ -76,7 +70,7 @@ golang.org/x/image/font
 golang.org/x/image/font/basicfont
 golang.org/x/image/math/f64
 golang.org/x/image/math/fixed
-# golang.org/x/net v0.7.0
+# golang.org/x/net v0.11.0
 ## explicit; go 1.17
 golang.org/x/net/context
 # gopkg.in/yaml.v2 v2.4.0
