@@ -107,19 +107,16 @@ func (p *Path) drawCurve(dc *gg.Context, scale float64) error {
 	dc.NewSubPath()
 
 	for i := 0; i < count; i++ {
-		mx := coords[i][0][0] * scale
-		my := coords[i][0][1] * scale
 
-		x1 := coords[i][1][0] * scale
-		y1 := coords[i][1][1] * scale
+		x1 := coords[i][0][0] * scale
+		y1 := coords[i][0][1] * scale
 
-		x2 := coords[i][2][0] * scale
-		y2 := coords[i][2][1] * scale
+		x2 := coords[i][1][0] * scale
+		y2 := coords[i][1][1] * scale
 
-		x := coords[i][3][0] * scale
-		y := coords[i][3][1] * scale
+		x := coords[i][2][0] * scale
+		y := coords[i][2][1] * scale
 
-		dc.MoveTo(mx, my)
 		dc.CubicTo(x1, y1, x2, y2, x, y)
 	}
 
@@ -131,9 +128,9 @@ func (p *Path) drawCurve(dc *gg.Context, scale float64) error {
 	return nil
 }
 
-func (p *Path) curves() ([][4][2]float64, error) {
+func (p *Path) curves() ([][3][2]float64, error) {
 
-	re, err := regexp.Compile(`^M\s{0,}(\d+\,\d+)\s{0,}C`)
+	re, err := regexp.Compile(`^M\s{0,}\d+\,\d+\s{0,}C`)
 
 	if err != nil {
 		return nil, fmt.Errorf("Failed to compile pattern, %w", err)
@@ -150,25 +147,11 @@ func (p *Path) curves() ([][4][2]float64, error) {
 	prefix := m[0]
 	suffix := "Z"
 
-	d = strings.Replace(d, prefix, "", 1)
+	d = strings.Replace(d, prefix, "", 1) // trying to TrimLeft w/ prefix results in weirdness
 	d = strings.TrimRight(d, suffix)
 
-	xy := strings.Split(m[1], ",")
-
-	mx, err := strconv.ParseFloat(xy[0], 64)
-
-	if err != nil {
-		return nil, fmt.Errorf("Failed to parse mx '%s', %w", xy[0], err)
-	}
-
-	my, err := strconv.ParseFloat(xy[1], 64)
-
-	if err != nil {
-		return nil, fmt.Errorf("Failed to parse my '%s', %w", xy[1], err)
-	}
-
 	curves := strings.Split(d, "C")
-	coords := make([][4][2]float64, len(curves))
+	coords := make([][3][2]float64, len(curves))
 
 	for i, curve := range curves {
 
@@ -214,15 +197,11 @@ func (p *Path) curves() ([][4][2]float64, error) {
 			return nil, fmt.Errorf("Failed to parse x value '%s' at offset %d, %w", xy[5], i, err)
 		}
 
-		coords[i] = [4][2]float64{
-			[2]float64{mx, my},
+		coords[i] = [3][2]float64{
 			[2]float64{x1, y1},
 			[2]float64{x2, y2},
 			[2]float64{x, y},
 		}
-
-		mx = x
-		my = y
 	}
 
 	return coords, nil
