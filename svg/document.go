@@ -1,8 +1,9 @@
 package svg
 
 import (
-	"fmt"
+	_ "fmt"
 	"image"
+	"log"
 	"math"
 
 	"github.com/fogleman/gg"
@@ -46,7 +47,8 @@ func (doc *Document) ToImage(max_dimension float64) (image.Image, error) {
 		err := p.Draw(dc, scale)
 
 		if err != nil {
-			return nil, fmt.Errorf("Failed to draw path at offset %d, %w", idx, err)
+			// return nil, fmt.Errorf("Failed to draw path at offset %d, %w", idx, err)
+			log.Printf("Failed to draw path at offset %d, %v", idx, err)
 		}
 	}
 
