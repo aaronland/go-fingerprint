@@ -45,6 +45,13 @@ func (p *Path) Coordinates() (Coordinates, error) {
 // Draw will render 'p' in to 'dc'.
 func (p *Path) Draw(dc *gg.Context, scale float64) error {
 
+	// I am not sure why the `aaronland/fingerprint` application is
+	// producing these paths but just ignore them for the time being.
+
+	if p.D == "M0,0" {
+		return nil
+	}
+
 	coordinates, err := p.Coordinates()
 
 	if err != nil {
