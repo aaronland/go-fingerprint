@@ -7,10 +7,19 @@ import (
 	"strings"
 )
 
+// MISSING is a the string identifier for a path that can not be parsed.
 const MISSING string = "X"
+
+// UNKNOWN is a the string identifier for a path type that is not supported.
 const UNKNOWN string = ""
+
+// POINT is the string identifier for a `Point`.
 const POINT string = "P"
+
+// CUBIC is the string identifier for a `Cubic` path.
 const CUBIC string = "C"
+
+// LINE is the string identifier for a `Line` path.
 const LINE string = "L"
 
 var (
@@ -19,28 +28,36 @@ var (
 	_ Coordinates = Line{}
 )
 
+// Coordinate is an interface representation the coordinates defined by a `Path` instance.
 type Coordinates interface {
 	Type() string
 }
 
+// Point is a two dimensional X,Y coordinate.
 type Point [2]float64
 
+// Type returns the `POINT` string.
 func (p Point) Type() string {
 	return POINT
 }
 
+// Cubic is a list of a tuples of `Point` instances that make up a cubic curve path.
 type Cubic [][3]Point
 
+// Type returns the `CUBIC` string.
 func (c Cubic) Type() string {
 	return CUBIC
 }
 
+// Line is a list of pairs of `Point` instances that make up a line path.
 type Line []Point
 
+// Type returns the `LINE` string.
 func (l Line) Type() string {
 	return LINE
 }
 
+// DerivePathType returns a string identifier for the SVG path (`d` attribute) defined by 'd'.
 func DerivePathType(d string) string {
 
 	path_re, err := regexp.Compile(`^M\s{0,}\d+\,\d+\s{0,}(L|C)`)
@@ -57,6 +74,7 @@ func DerivePathType(d string) string {
 	return m[1]
 }
 
+// DerivePathType returns a `Coordinates` instance derived from the SVG path (`d` attribute) defined by 'd'.
 func DeriveCoordinates(d string) (Coordinates, error) {
 
 	t := DerivePathType(d)

@@ -6,6 +6,7 @@ import (
 	"github.com/fogleman/gg"
 )
 
+// Draw renders the path defined by 'coords' on to 'gg'.
 func Draw(dc *gg.Context, coords Coordinates, color string, scale float64) error {
 
 	t := coords.Type()
@@ -20,6 +21,7 @@ func Draw(dc *gg.Context, coords Coordinates, color string, scale float64) error
 	}
 }
 
+// Draw renders the path defined by 'coords' as a closed line string on to 'gg'.
 func DrawLine(dc *gg.Context, points Line, color string, scale float64) error {
 
 	count := len(points)
@@ -40,6 +42,7 @@ func DrawLine(dc *gg.Context, points Line, color string, scale float64) error {
 	return nil
 }
 
+// Draw renders the path defined by 'coords' as a closed cubic curve path on to 'gg'.
 func DrawCubic(dc *gg.Context, curves Cubic, color string, scale float64) error {
 
 	count := len(curves)

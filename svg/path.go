@@ -30,16 +30,19 @@ func (p *Path) HexColor() string {
 	return fill + alpha
 }
 
+// Type will return a string identifier for the type of path derived from the `D` property of 'p'.
 func (p *Path) Type() string {
 
 	return DerivePathType(p.D)
 }
 
+// Coodinates with return a `Coordinates` instance derived derived from the `D` property of 'p'.
 func (p *Path) Coordinates() (Coordinates, error) {
 
 	return DeriveCoordinates(p.D)
 }
 
+// Draw will render 'p' in to 'dc'.
 func (p *Path) Draw(dc *gg.Context, scale float64) error {
 
 	coordinates, err := p.Coordinates()
