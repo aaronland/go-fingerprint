@@ -6,6 +6,7 @@ import (
 	"io"
 	"time"
 
+	"github.com/aaronland/go-image/colour"	
 	"github.com/aaronland/go-fingerprint/image"
 	"github.com/aaronland/go-fingerprint/svg"
 )
@@ -38,7 +39,7 @@ func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) error {
 		return fmt.Errorf("Failed to create image, %w", err)
 	}
 
-	im = image.ToAdobeRGB(im)
+	im = colour.ToAdobeRGB(im)
 	im = image.AddBackground(im)
 
 	err = image.AppendTime(im, wr, t)
