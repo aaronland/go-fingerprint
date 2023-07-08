@@ -12,15 +12,15 @@ import (
 // Document defines a struct representing a fingerprint SVG document. At this time it is not
 type Document struct {
 	// Width is the width of the fingerprint SVG drawing.
-	Width int `xml:"width,attr"`
+	Width int `xml:"width,attr" json:"width"`
 	// Height is the width of the fingerprint SVG drawing.
-	Height int `xml:"height,attr"`
+	Height int `xml:"height,attr" json:"height"`
 	// ViewBox is the viewbox boundary of the fingerprint SVG drawing.
-	ViewBox string `xml:"viewBox,attr"`
+	ViewBox string `xml:"viewBox,attr" json:"viewbox"`
 	// Date is the date that a fingerprint SVG drawing was produced.
-	Date string `xml:"x-fingerprint-date,attr"`
+	Date string `xml:"x-fingerprint-date,attr" json:"date"`
 	// Paths is the list of SVG path that define a fingerprint SVG drawing.
-	Paths []*Path `xml:"path"`
+	Paths []*Path `xml:"path" json:"paths"`
 }
 
 // ToImage will rasterize 'doc' and return it as an `image.Image` instance whose maximum dimension is scaled to 'max_dimension'

@@ -3,4 +3,5 @@ bin
 *.png
 *.jpg
 *.svg
+*.pdf
 .DS_Store
