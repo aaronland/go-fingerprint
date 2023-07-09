@@ -7,16 +7,23 @@ import (
 	"log"
 	"os"
 
-	"github.com/aaronland/go-fingerprint/pdf"
+	"github.com/aaronland/go-fingerprint/fpdf"
+	"github.com/aaronland/go-fingerprint/pdf"	
 )
 
 func main() {
 
-	flag.Parse()
+	fs := flagset.NewFlagSet("pdf")
+
+	fpdf.AppendFlags(fs)
+
+	flagset.Parse(fs)
 
 	ctx := context.Background()
 
-	for _, path := range flag.Args() {
+	opts := fpdf.DefaultOptions()
+	
+	for _, path := range fs.Args() {
 
 		//
 
@@ -30,7 +37,7 @@ func main() {
 
 		//
 
-		pdf_doc, err := pdf.FromReader(ctx, r)
+		pdf_doc, err := pdf.FromReader(ctx, r, opts)
 
 		if err != nil {
 			log.Fatal(err)
@@ -40,7 +47,7 @@ func main() {
 
 		pdf_path := fmt.Sprintf("%s.pdf", path)
 
-		err = pdf_doc.OutputFileAndClose(pdf_path)
+		err = pdf_doc.Save(pdf_path)
 
 		if err != nil {
 			log.Fatal("WOMP", err)

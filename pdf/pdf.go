@@ -9,11 +9,20 @@ import (
 
 	"github.com/aaronland/go-fingerprint"
 	"github.com/aaronland/go-fingerprint/svg"
+	"github.com/aaronland/go-fingerprint/fpdf"	
 	"github.com/jung-kurt/gofpdf"
 )
 
-func FromReader(ctx context.Context, r io.ReadSeeker) (*gofpdf.Fpdf, error) {
+func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf.Document, error) {
 
+	pdf_doc, err := fpdf.NewDocument(ctx, opts)
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to create PDF document, %w", err)
+	}
+
+	pdf := pdf_doc.PDF
+	
 	h := .15
 	max_d := 11.0 * 72.0
 	font_size := 8.0
@@ -75,5 +84,5 @@ func FromReader(ctx context.Context, r io.ReadSeeker) (*gofpdf.Fpdf, error) {
 
 	//
 
-	return pdf, nil
+	return pdf_doc, nil
 }
