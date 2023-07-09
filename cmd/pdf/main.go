@@ -1,26 +1,24 @@
 package main
 
 import (
-	"encoding/json"
+	"context"
 	"flag"
+	"fmt"
 	"log"
 	"os"
 
-	"github.com/aaronland/go-fingerprint"
-	"github.com/aaronland/go-fingerprint/svg"
-	"github.com/jung-kurt/gofpdf"
+	"github.com/aaronland/go-fingerprint/pdf"
 )
 
 func main() {
 
 	flag.Parse()
 
-	pdf := gofpdf.New("P", "in", "letter", "")
-	pdf.SetFont("Courier", "", 6)
-
-	h := .15
+	ctx := context.Background()
 
 	for _, path := range flag.Args() {
+
+		//
 
 		r, err := os.Open(path)
 
@@ -32,56 +30,22 @@ func main() {
 
 		//
 
-		wr, err := os.CreateTemp("", "example.*.jpg")
+		pdf_doc, err := pdf.FromReader(ctx, r)
 
 		if err != nil {
 			log.Fatal(err)
 		}
-
-		defer os.Remove(wr.Name()) // clean up
-
-		err = fingerprint.Convert(r, wr, 800.00)
-
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		err = wr.Close()
-
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		pdf.AddPage()
-
-		var opt gofpdf.ImageOptions
-		opt.ImageType = "jpg"
-
-		pdf.ImageOptions(wr.Name(), 0, 0, -1, -1, false, opt, 0, "")
 
 		//
 
-		r.Seek(0, 0)
+		pdf_path := fmt.Sprintf("%s.pdf", path)
 
-		doc, err := svg.Unmarshal(r)
-
-		if err != nil {
-			log.Fatalf("Failed to read %s, %w", err)
-		}
-
-		enc_doc, err := json.Marshal(doc)
+		err = pdf_doc.OutputFileAndClose(pdf_path)
 
 		if err != nil {
-			log.Fatalf("Failed to encode, %w", err)
+			log.Fatal("WOMP", err)
 		}
 
-		pdf.AddPage()
-		pdf.MultiCell(0, h, string(enc_doc), "", "L", false)
 	}
 
-	err := pdf.OutputFileAndClose("hello.pdf")
-
-	if err != nil {
-		log.Fatal("WOMP", err)
-	}
 }
