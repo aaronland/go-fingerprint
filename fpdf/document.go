@@ -1,10 +1,17 @@
 package fpdf
 
 import (
+	"context"
+	"fmt"
+	"strings"
 	"sync"
 
-	"github.com/jung-kurt/gofpdf"	
+	"github.com/jung-kurt/gofpdf"
+	"github.com/sfomuseum/go-font-ocra"
 )
+
+// MM2INCH defines the number if millimeters in an inch.
+const MM2INCH float64 = 25.4
 
 // type Document provides a struct for creating a PDF file from a folder of images (a picturebook).
 type Document struct {
@@ -28,7 +35,7 @@ type Document struct {
 	tmpfiles []string
 }
 
-// New returns a new `` instances configured according to the settings in 'opts'.
+// New returns a new “ instances configured according to the settings in 'opts'.
 func NewDocument(ctx context.Context, opts *Options) (*Document, error) {
 
 	var pdf *gofpdf.Fpdf
@@ -186,15 +193,15 @@ func NewDocument(ctx context.Context, opts *Options) (*Document, error) {
 	mu := new(sync.Mutex)
 
 	pb := Document{
-		PDF:         pdf,
-		Mutex:       mu,
-		Borders:     borders,
-		Margins:     margins,
-		Canvas:      canvas,
-		Text:        t,
-		Options:     opts,
-		pages:       0,
-		tmpfiles:    tmpfiles,
+		PDF:      pdf,
+		Mutex:    mu,
+		Borders:  borders,
+		Margins:  margins,
+		Canvas:   canvas,
+		Text:     t,
+		Options:  opts,
+		pages:    0,
+		tmpfiles: tmpfiles,
 	}
 
 	return &pb, nil

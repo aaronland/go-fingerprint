@@ -1,7 +1,7 @@
 package fpdf
 
 import (
-	"gocloud.dev/blob"
+	"context"
 )
 
 // PictureBookOptions defines a struct containing configuration information for a given picturebook instance.
@@ -34,12 +34,6 @@ type Options struct {
 	Verbose bool
 	// A boolean value to enable to use of an OCRA font for writing captions.
 	OCRAFont bool
-	// A gocloud.dev/blob `Bucket` instance where source images are stored.
-	Source *blob.Bucket
-	// A gocloud.dev/blob `Bucket` instance where the final picturebook is written to.
-	Target *blob.Bucket
-	// A gocloud.dev/blob `Bucket` instance where are temporary files necessary in the creation of the picturebook are written to.
-	Temporary *blob.Bucket
 	// A boolean value signaling that images should only be added on even-numbered pages.
 	MaxPages int
 }

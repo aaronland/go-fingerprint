@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"flag"
 	"fmt"
 	"log"
 	"os"
 
 	"github.com/aaronland/go-fingerprint/fpdf"
-	"github.com/aaronland/go-fingerprint/pdf"	
+	"github.com/aaronland/go-fingerprint/pdf"
+	"github.com/sfomuseum/go-flags/flagset"
 )
 
 func main() {
@@ -21,8 +21,12 @@ func main() {
 
 	ctx := context.Background()
 
-	opts := fpdf.DefaultOptions()
-	
+	opts, err := fpdf.DefaultOptions(ctx)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	for _, path := range fs.Args() {
 
 		//

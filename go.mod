@@ -6,6 +6,8 @@ require (
 	github.com/aaronland/go-image v1.2.2
 	github.com/fogleman/gg v1.3.0
 	github.com/jung-kurt/gofpdf v1.16.2
+	github.com/sfomuseum/go-flags v0.10.0
+	github.com/sfomuseum/go-font-ocra v0.0.2
 	gocloud.dev v0.30.0
 )
 
@@ -27,6 +29,7 @@ require (
 	github.com/mandykoh/go-parallel v0.1.0 // indirect
 	github.com/mandykoh/prism v0.35.1 // indirect
 	github.com/sfomuseum/go-exif-update v0.1.2 // indirect
+	github.com/whosonfirst/go-bindata-assetfs v1.0.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/image v0.5.0 // indirect
 	golang.org/x/net v0.11.0 // indirect

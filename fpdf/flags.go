@@ -43,31 +43,24 @@ var margin_right float64
 // The size of an exterior "bleed" margin for a picturebook.
 var bleed float64
 
-// A valid gocloud.dev/blob URI for where source input images are read from.
-var source_uri string
-
-// A valid gocloud.dev/blob URI for where the final picturebook file will be written to.
-var target_uri string
-
-// A valid gocloud.dev/blob URI for where temporary picturebook-related images will be written to and read from.
-var tmpfile_uri string
+var ocra_font bool
 
 // Boolean flag to signal verbose logging during the creation of a picturebook.
 var verbose bool
 
 func AppendFlags(fs *flag.FlagSet) error {
 
-	fs.StringVar(&orientation, "orientation", "P", "The orientation of your picturebook. Valid orientations are: 'P' and 'L' for portrait and landscape mode respectively."	)
+	fs.StringVar(&orientation, "orientation", "P", "The orientation of your picturebook. Valid orientations are: 'P' and 'L' for portrait and landscape mode respectively.")
 	fs.StringVar(&size, "size", "letter", `A common paper size to use for the size of your picturebook. Valid sizes are: "a3", "a4", "a5", "letter", "legal", or "tabloid".`)
-	
+
 	fs.Float64Var(&width, "width", 0.0, "A custom height to use as the size of your picturebook. Units are defined in inches by default. This flag overrides the -size flag when used in combination with the -height flag.")
-	
+
 	fs.Float64Var(&height, "height", 0.0, "A custom width to use as the size of your picturebook. Units are defined in inches by default. This flag overrides the -size flag when used in combination with the -width flag.")
-	
+
 	fs.StringVar(&units, "units", "inches", "The unit of measurement to apply to the -height and -width flags. Valid options are inches, millimeters, centimeters")
-	
+
 	fs.Float64Var(&dpi, "dpi", 150, "The DPI (dots per inch) resolution for your picturebook.")
-	
+
 	fs.Float64Var(&border, "border", 0.01, "The size of the border around images.")
 
 	fs.Float64Var(&margin_top, "margin-top", 1.0, "The margin around the top of each page.")
@@ -81,11 +74,6 @@ func AppendFlags(fs *flag.FlagSet) error {
 	fs.BoolVar(&verbose, "verbose", false, "Display verbose output as the picturebook is created.")
 
 	fs.BoolVar(&ocra_font, "ocra-font", false, "Use an OCR-compatible font for captions.")
-
-	fs.StringVar(&source_uri, "source-uri", "", desc_buckets)
-
-	desc_buckets_target := fmt.Sprintf("%s If empty then the code will try to use the operating system's 'current working directory' where applicable.", desc_buckets)
-	fs.StringVar(&target_uri, "target-uri", "", desc_buckets_target)
 
 	return nil
 }

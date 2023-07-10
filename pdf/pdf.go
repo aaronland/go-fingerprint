@@ -8,8 +8,8 @@ import (
 	"os"
 
 	"github.com/aaronland/go-fingerprint"
+	"github.com/aaronland/go-fingerprint/fpdf"
 	"github.com/aaronland/go-fingerprint/svg"
-	"github.com/aaronland/go-fingerprint/fpdf"	
 	"github.com/jung-kurt/gofpdf"
 )
 
@@ -22,10 +22,10 @@ func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf
 	}
 
 	pdf := pdf_doc.PDF
-	
+
 	h := .15
 	max_d := 11.0 * 72.0
-	font_size := 8.0
+	// font_size := 8.0
 
 	doc, err := svg.Unmarshal(r)
 
@@ -61,8 +61,8 @@ func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf
 
 	// Draw the image to the PDF
 
-	pdf := gofpdf.New("P", "in", "letter", "")
-	pdf.SetFont("Helvetica", "", font_size)
+	// pdf = gofpdf.New("P", "in", "letter", "")
+	// pdf.SetFont("Helvetica", "", font_size)
 
 	pdf.AddPage()
 
