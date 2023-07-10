@@ -30,8 +30,6 @@ func main() {
 
 	for _, path := range fs.Args() {
 
-		//
-
 		r, err := os.Open(path)
 
 		if err != nil {
@@ -39,8 +37,6 @@ func main() {
 		}
 
 		defer r.Close()
-
-		//
 
 		title := filepath.Base(path)
 
@@ -50,10 +46,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		//
-
 		pdf_path := fmt.Sprintf("%s.pdf", path)
-		pdf_path = "test.pdf"
 
 		err = pdf_doc.Save(pdf_path)
 
@@ -61,6 +54,7 @@ func main() {
 			log.Fatal("WOMP", err)
 		}
 
+		log.Println(pdf_path)
 	}
 
 }
