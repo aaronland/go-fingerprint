@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	_ "log"
+	"math"
 	"os"
 
 	"github.com/aaronland/go-fingerprint"
@@ -13,7 +15,9 @@ import (
 	"github.com/jung-kurt/gofpdf"
 )
 
-func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf.Document, error) {
+func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.Options) (*fpdf.Document, error) {
+
+	cell_h := .15 // This should derived from page and font dimensions...
 
 	pdf_doc, err := fpdf.NewDocument(ctx, opts)
 
@@ -22,9 +26,6 @@ func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf
 	}
 
 	pdf := pdf_doc.PDF
-
-	cell_h := .15
-	max_d := 11.0 * pdf_doc.Options.DPI
 
 	doc, err := svg.Unmarshal(r)
 
@@ -38,6 +39,40 @@ func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf
 		return nil, fmt.Errorf("Failed to rewind reader, %w", err)
 	}
 
+	// START OF move this in to NewDocument
+
+	margins := pdf_doc.Margins
+
+	left := margins.Left / pdf_doc.Options.DPI
+	right := margins.Right / pdf_doc.Options.DPI
+	top := margins.Top / pdf_doc.Options.DPI
+	bottom := margins.Bottom / pdf_doc.Options.DPI
+
+	pdf.SetMargins(left, top, right)
+	pdf.SetAutoPageBreak(true, bottom)
+
+	// END OF move this in to NewDocument
+
+	pdf.SetTextColor(0, 0, 0)
+	pdf.SetFont("Helvetica", "", 6)
+
+	pdf.SetFooterFunc(func() {
+
+		x := pdf_doc.Margins.Left / pdf_doc.Options.DPI
+		y := (pdf_doc.Canvas.Height + (pdf_doc.Margins.Top * 1.35)) / pdf_doc.Options.DPI
+
+		pdf.SetXY(x, y)
+		pdf.SetFont("Courier", "", 6)
+		pdf.SetTextColor(128, 128, 128)
+		pdf.CellFormat(0, cell_h, fmt.Sprintf("%s/%d", title, pdf.PageNo()), "", 0, "C", false, 0, "")
+	})
+
+	// Render SVG
+
+	// Note, we could also use fpdf.SVGBasicWrite` which might save the toruble
+	// of all the scaling and positioning code below. Still untested...
+	// https://pkg.go.dev/github.com/jung-kurt/gofpdf#example-Fpdf.SVGBasicWrite
+
 	wr, err := os.CreateTemp("", "fingerprint.*.jpg")
 
 	if err != nil {
@@ -45,6 +80,8 @@ func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf
 	}
 
 	defer os.Remove(wr.Name())
+
+	max_d := math.Max(pdf_doc.Canvas.Width, pdf_doc.Canvas.Height)
 
 	im, err := fingerprint.Convert(r, wr, max_d)
 
@@ -79,18 +116,12 @@ func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf
 	info := pdf.RegisterImageOptionsReader(wr.Name(), image_opts, im_r)
 
 	if info == nil {
-		return nil, fmt.Errorf("SAD 1")
+		return nil, fmt.Errorf("Failed to register image options")
 	}
 
 	info.SetDpi(pdf_doc.Options.DPI)
 
-	if w == 0.0 || h == 0.0 {
-		return nil, fmt.Errorf("SAD 2")
-	}
-
 	// Remember: margins have been calculated inclusive of page bleeds
-
-	margins := pdf_doc.Margins
 
 	x := margins.Left
 	y := margins.Top
@@ -144,15 +175,10 @@ func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf
 	image_w := w / pdf_doc.Options.DPI
 	image_h := h / pdf_doc.Options.DPI
 
-	//
+	pdf.AddPage()
+	pdf.ImageOptions(wr.Name(), image_x, image_y, image_w, image_h, false, image_opts, 0, "")
 
 	pdf.AddPage()
-	// pdf.ImageOptions(wr.Name(), 0, 0, -1, -1, false, opt, 0, "")
-
-	// var opt gofpdf.ImageOptions
-	// opt.ImageType = "jpg"
-
-	pdf.ImageOptions(wr.Name(), image_x, image_y, image_w, image_h, false, image_opts, 0, "")
 
 	// Write the data to the PDF
 
@@ -163,6 +189,9 @@ func FromReader(ctx context.Context, r io.ReadSeeker, opts *fpdf.Options) (*fpdf
 	}
 
 	pdf.AddPage()
+
+	// cell_w := pdf_doc.Canvas.Width / pdf_doc.Options.DPI
+
 	pdf.MultiCell(0, cell_h, string(enc_doc), "", "L", false)
 
 	//

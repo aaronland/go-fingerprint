@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/aaronland/go-fingerprint/fpdf"
 	"github.com/aaronland/go-fingerprint/pdf"
@@ -21,7 +22,7 @@ func main() {
 
 	ctx := context.Background()
 
-	opts, err := fpdf.DefaultOptions(ctx)
+	pdf_opts, err := fpdf.DefaultOptions(ctx)
 
 	if err != nil {
 		log.Fatal(err)
@@ -41,7 +42,9 @@ func main() {
 
 		//
 
-		pdf_doc, err := pdf.FromReader(ctx, r, opts)
+		title := filepath.Base(path)
+
+		pdf_doc, err := pdf.FromReader(ctx, r, title, pdf_opts)
 
 		if err != nil {
 			log.Fatal(err)
