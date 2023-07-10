@@ -10,9 +10,9 @@ import (
 	"os"
 
 	"github.com/aaronland/go-fingerprint"
-	"github.com/aaronland/go-fingerprint/fpdf"
 	"github.com/aaronland/go-fingerprint/svg"
-	"github.com/jung-kurt/gofpdf"
+	"github.com/aaronland/go-fpdf"
+	gofpdf "github.com/jung-kurt/gofpdf"
 )
 
 func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.Options) (*fpdf.Document, error) {
@@ -24,8 +24,6 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 	if err != nil {
 		return nil, fmt.Errorf("Failed to create PDF document, %w", err)
 	}
-
-	pdf := pdf_doc.PDF
 
 	doc, err := svg.Unmarshal(r)
 
@@ -39,19 +37,7 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 		return nil, fmt.Errorf("Failed to rewind reader, %w", err)
 	}
 
-	// START OF move this in to NewDocument
-
-	margins := pdf_doc.Margins
-
-	left := margins.Left / pdf_doc.Options.DPI
-	right := margins.Right / pdf_doc.Options.DPI
-	top := margins.Top / pdf_doc.Options.DPI
-	bottom := margins.Bottom / pdf_doc.Options.DPI
-
-	pdf.SetMargins(left, top, right)
-	pdf.SetAutoPageBreak(true, bottom)
-
-	// END OF move this in to NewDocument
+	pdf := pdf_doc.PDF
 
 	pdf.SetTextColor(0, 0, 0)
 	pdf.SetFont("Helvetica", "", 6)
@@ -66,6 +52,8 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 		pdf.SetTextColor(128, 128, 128)
 		pdf.CellFormat(0, cell_h, fmt.Sprintf("%s/%d", title, pdf.PageNo()), "", 0, "C", false, 0, "")
 	})
+
+	pdf.AddPage()
 
 	// Render SVG
 
@@ -95,6 +83,8 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 		return nil, fmt.Errorf("Failed to close image writer, %w", err)
 	}
 
+	// START OF make this a convenience method in aaronland/go-fpdf
+
 	// Draw the image to the PDF
 
 	image_opts := gofpdf.ImageOptions{
@@ -110,7 +100,12 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 	max_w := pdf_doc.Canvas.Width
 	max_h := pdf_doc.Canvas.Height
 
-	im_r, _ := os.Open(wr.Name())
+	im_r, err := os.Open(wr.Name())
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to open temporary image %s, %w", wr.Name(), err)
+	}
+
 	defer im_r.Close()
 
 	info := pdf.RegisterImageOptionsReader(wr.Name(), image_opts, im_r)
@@ -123,6 +118,7 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 
 	// Remember: margins have been calculated inclusive of page bleeds
 
+	margins := pdf_doc.Margins
 	x := margins.Left
 	y := margins.Top
 
@@ -175,8 +171,9 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 	image_w := w / pdf_doc.Options.DPI
 	image_h := h / pdf_doc.Options.DPI
 
-	pdf.AddPage()
 	pdf.ImageOptions(wr.Name(), image_x, image_y, image_w, image_h, false, image_opts, 0, "")
+
+	// END OF make this a convenience method in aaronland/go-fpdf
 
 	pdf.AddPage()
 

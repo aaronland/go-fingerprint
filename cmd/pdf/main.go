@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/aaronland/go-fingerprint/fpdf"
 	"github.com/aaronland/go-fingerprint/pdf"
+	"github.com/aaronland/go-fpdf"
 	"github.com/sfomuseum/go-flags/flagset"
 )
 
@@ -47,7 +47,7 @@ func main() {
 		}
 
 		pdf_path := fmt.Sprintf("%s.pdf", path)
-
+		pdf_path = "test.pdf"
 		err = pdf_doc.Save(pdf_path)
 
 		if err != nil {
