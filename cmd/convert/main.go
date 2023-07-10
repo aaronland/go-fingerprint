@@ -52,7 +52,7 @@ func main() {
 			log.Fatalf("Failed to open %s for writing, %v", out_path, err)
 		}
 
-		err = fingerprint.Convert(r, wr, *max_dimension)
+		_, err = fingerprint.Convert(r, wr, *max_dimension)
 
 		if err != nil {
 			log.Fatalf("Failed to derive info for %s, %v", out_path, err)
