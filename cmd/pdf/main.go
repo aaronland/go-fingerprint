@@ -47,7 +47,8 @@ func main() {
 		}
 
 		pdf_path := fmt.Sprintf("%s.pdf", path)
-		pdf_path = "test.pdf"
+		// pdf_path = "test.pdf"
+
 		err = pdf_doc.Save(pdf_path)
 
 		if err != nil {

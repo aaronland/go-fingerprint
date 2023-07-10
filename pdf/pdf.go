@@ -8,6 +8,7 @@ import (
 	_ "log"
 	"math"
 	"os"
+	"time"
 
 	"github.com/aaronland/go-fingerprint"
 	"github.com/aaronland/go-fingerprint/svg"
@@ -31,6 +32,14 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 		return nil, fmt.Errorf("Failed to unmarshal document, %w", err)
 	}
 
+	layout := "2006-01-02T15:04:05.999Z"
+
+	t, err := time.Parse(layout, doc.Date)
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to parse document date (%s), %w", doc.Date, err)
+	}
+
 	_, err = r.Seek(0, 0)
 
 	if err != nil {
@@ -50,7 +59,7 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 		pdf.SetXY(x, y)
 		pdf.SetFont("Courier", "", 6)
 		pdf.SetTextColor(128, 128, 128)
-		pdf.CellFormat(0, cell_h, fmt.Sprintf("%s/%d", title, pdf.PageNo()), "", 0, "C", false, 0, "")
+		pdf.CellFormat(0, cell_h, fmt.Sprintf("%s (%d) / %d", title, t.Year(), pdf.PageNo()), "", 0, "C", false, 0, "")
 	})
 
 	pdf.AddPage()
