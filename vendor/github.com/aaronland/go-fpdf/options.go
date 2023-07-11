@@ -2,6 +2,7 @@ package fpdf
 
 import (
 	"context"
+	"flag"
 )
 
 // Options defines a struct containing configuration information for a given  instance.
@@ -36,6 +37,27 @@ type Options struct {
 	OCRAFont bool
 	// A boolean value signaling that images should only be added on even-numbered pages.
 	MaxPages int
+}
+
+func OptionsFromFlagSet(ctx context.Context, fs *flag.FlagSet) (*Options, error) {
+
+	opts := &Options{
+		Orientation:  orientation,
+		Size:         size,
+		Width:        width,
+		Height:       height,
+		Units:        units,
+		DPI:          dpi,
+		Border:       border,
+		Bleed:        bleed,
+		MarginTop:    margin_top,
+		MarginBottom: margin_bottom,
+		MarginLeft:   margin_left,
+		MarginRight:  margin_right,
+		Verbose:      verbose,
+	}
+
+	return opts, nil
 }
 
 // NewDefaultOptions returns a `Options` with default settings.

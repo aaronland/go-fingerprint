@@ -196,7 +196,7 @@ func NewDocument(ctx context.Context, opts *Options) (*Document, error) {
 
 	pdf.SetMargins(left, top, right)
 	pdf.SetAutoPageBreak(true, bottom)
-	
+
 	tmpfiles := make([]string, 0)
 	mu := new(sync.Mutex)
 

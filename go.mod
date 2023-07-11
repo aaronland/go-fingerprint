@@ -3,9 +3,10 @@ module github.com/aaronland/go-fingerprint
 go 1.20
 
 require (
-	github.com/aaronland/go-fpdf v0.0.1
+	github.com/aaronland/go-fpdf v0.0.2
 	github.com/aaronland/go-image v1.2.2
 	github.com/fogleman/gg v1.3.0
+	github.com/jung-kurt/gofpdf v1.16.2
 	github.com/sfomuseum/go-flags v0.10.0
 )
 
@@ -21,7 +22,6 @@ require (
 	github.com/go-xmlfmt/xmlfmt v0.0.0-20191208150333-d5b6f63a941b // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
-	github.com/jung-kurt/gofpdf v1.16.2 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/mandykoh/go-parallel v0.1.0 // indirect
 	github.com/mandykoh/prism v0.35.1 // indirect

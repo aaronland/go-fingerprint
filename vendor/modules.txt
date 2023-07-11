@@ -1,4 +1,4 @@
-# github.com/aaronland/go-fpdf v0.0.1
+# github.com/aaronland/go-fpdf v0.0.2
 ## explicit; go 1.20
 github.com/aaronland/go-fpdf
 # github.com/aaronland/go-image v1.2.2

@@ -1,5 +1,5 @@
-github.com/aaronland/go-fpdf v0.0.1 h1:gpE7NehJWwBxhMw9NFWQ4wvdgqNNuyChIgMV60pCk1U=
-github.com/aaronland/go-fpdf v0.0.1/go.mod h1:uJsYggs3Dqp20DAN1vWOpkbETBRnb19E0h3vMn9m2ak=
+github.com/aaronland/go-fpdf v0.0.2 h1:LpyPyixmsOV/QTDPTkjWxIJbUZWq39h0PB4HhHlwDg4=
+github.com/aaronland/go-fpdf v0.0.2/go.mod h1:uJsYggs3Dqp20DAN1vWOpkbETBRnb19E0h3vMn9m2ak=
 github.com/aaronland/go-image v1.2.2 h1:2Q5QlIuO0KzsT8MkO6d9VY13687GLF+TI83V5RtidWk=
 github.com/aaronland/go-image v1.2.2/go.mod h1:To/p3QVU6wjKmkDRlbML2TZwrRIGrvIkm9h+olNfA5A=
 github.com/aaronland/go-roster v1.0.0 h1:FRDGrTqsYySKjWnAhbBGXyeGlI/o5/t9FZYCbUmyQtI=
