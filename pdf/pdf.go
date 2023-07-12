@@ -1,3 +1,4 @@
+// Package pdf provides methods for PDF-related operations for fingerprint SVG documents.
 package pdf
 
 import (
@@ -16,6 +17,10 @@ import (
 	gofpdf "github.com/jung-kurt/gofpdf"
 )
 
+// FromReader will generate a `fpdf.Document` instance derived from 'r' (which is expected to be a valid fingerprint SVG
+// document. The body the `fpdf.Document` instance will contain a full-page rasterized rendering of the SVG document
+// followed by one or more pages containing the body of the `aaronland/go-fingerprint/svg.Document`
+// representation of the SVG document as JSON-encoded text.
 func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.Options) (*fpdf.Document, error) {
 
 	cell_h := .15 // This should derived from page and font dimensions...

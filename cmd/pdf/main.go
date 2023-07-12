@@ -18,12 +18,16 @@ func main() {
 	fpdf.AppendFlags(fs)
 
 	fs.Usage = func() {
-		fmt.Fprintf(os.Stderr, "...\n\n")
+		fmt.Fprintf(os.Stderr, "Convert one or more fingerprint SVG documents into PDF documents.\n\n")
+		fmt.Fprintf(os.Stderr, "Each document contains a full-page rasterized rendering of the SVG document\n")
+		fmt.Fprintf(os.Stderr, "followed by one or more pages containing the body of the aaronland/go-fingerprint/svg.Document\n")
+		fmt.Fprintf(os.Stderr, "representation of the SVG document as JSON-encoded text.\n\n")
+		fmt.Fprintf(os.Stderr, "The final PDF document will be saved as (svg-path).pdf.\n\n")
 		fmt.Fprintf(os.Stderr, "Usage:\n\t %s [options] path(N) path(N)\n\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "Valid options are:\n")			
+		fmt.Fprintf(os.Stderr, "Valid options are:\n")
 		fs.PrintDefaults()
 	}
-	
+
 	flagset.Parse(fs)
 
 	ctx := context.Background()
