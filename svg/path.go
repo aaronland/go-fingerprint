@@ -9,11 +9,11 @@ import (
 // Path is a struct representing an individual path element in a fingerprint SVG drawing.
 type Path struct {
 	// Fill is the colour assigned to the path.
-	Fill string `xml:"fill,attr"`
+	Fill string `xml:"fill,attr" json:"f"`
 	// FillOpacity is the opacity of the colour (assigned to the path).
-	FillOpacity float64 `xml:"fill-opacity,attr"`
+	FillOpacity float64 `xml:"fill-opacity,attr" json:"o"`
 	// D is the SVG-encoded value of the path.
-	D string `xml:"d,attr"`
+	D string `xml:"d,attr" json:"d"`
 }
 
 // HexColor will return the 8-digit hexidecial color (fill + fill opacity) for the path

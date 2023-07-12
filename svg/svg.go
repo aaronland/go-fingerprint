@@ -1,3 +1,4 @@
+// Package svg provides methods for working with fingerprint SVG documents.
 package svg
 
 import (

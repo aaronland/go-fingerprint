@@ -2,13 +2,14 @@ package fingerprint
 
 import (
 	"fmt"
+	go_image "image"
 	_ "image/png"
 	"io"
 	"time"
 
-	"github.com/aaronland/go-image/colour"	
 	"github.com/aaronland/go-fingerprint/image"
 	"github.com/aaronland/go-fingerprint/svg"
+	"github.com/aaronland/go-image/colour"
 )
 
 // Convert writes a fingerprint SVG document defined by 'r' to a JPEG image defined by 'wr'. The final
@@ -16,12 +17,12 @@ import (
 // in the SVG document's `x-fingerprint-date` attribute is written to the final JPEG image's `DateTime`,
 // `DateTimeDigitized` and `DateTimeOriginal` EXIF headers. The final JPEG representation is updated to
 // ensure that all pixel values match the Adobe RGB colour profile.
-func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) error {
+func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) (go_image.Image, error) {
 
 	doc, err := svg.Unmarshal(r)
 
 	if err != nil {
-		return fmt.Errorf("Failed to derive doc, %w", err)
+		return nil, fmt.Errorf("Failed to derive doc, %w", err)
 	}
 
 	// 2023-03-19T06:50:28.965Z
@@ -30,13 +31,13 @@ func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) error {
 	t, err := time.Parse(layout, doc.Date)
 
 	if err != nil {
-		return fmt.Errorf("Failed to parse date (%s), %w", doc.Date, err)
+		return nil, fmt.Errorf("Failed to parse date (%s), %w", doc.Date, err)
 	}
 
 	im, err := doc.ToImage(max_dimension)
 
 	if err != nil {
-		return fmt.Errorf("Failed to create image, %w", err)
+		return nil, fmt.Errorf("Failed to create image, %w", err)
 	}
 
 	im = colour.ToAdobeRGB(im)
@@ -45,8 +46,8 @@ func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) error {
 	err = image.AppendTime(im, wr, t)
 
 	if err != nil {
-		return fmt.Errorf("Failed to add time, %w", err)
+		return nil, fmt.Errorf("Failed to add time, %w", err)
 	}
 
-	return nil
+	return im, nil
 }
