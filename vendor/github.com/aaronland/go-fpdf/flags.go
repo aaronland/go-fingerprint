@@ -43,10 +43,8 @@ var margin_right float64
 // The size of an exterior "bleed" margin for a .
 var bleed float64
 
+// Boolean flag indicating whether or not to use OCR-compatible for text.
 var ocra_font bool
-
-// Boolean flag to signal verbose logging during the creation of a .
-var verbose bool
 
 func AppendFlags(fs *flag.FlagSet) error {
 
@@ -71,9 +69,7 @@ func AppendFlags(fs *flag.FlagSet) error {
 
 	fs.Float64Var(&bleed, "bleed", 0.0, "An additional bleed area to add (on all four sides) to the size of your .")
 
-	fs.BoolVar(&verbose, "verbose", false, "Display verbose output as the  is created.")
-
-	fs.BoolVar(&ocra_font, "ocra-font", false, "Use an OCR-compatible font for captions.")
+	fs.BoolVar(&ocra_font, "ocra-font", false, "Use an OCR-compatible font for text.")
 
 	return nil
 }
