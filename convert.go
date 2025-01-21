@@ -40,7 +40,8 @@ func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) (go_image.Ima
 		return nil, fmt.Errorf("Failed to create image, %w", err)
 	}
 
-	im = colour.ToAdobeRGB(im)
+	// im = colour.ToAdobeRGB(im)
+	im = colour.ToDisplayP3(im)	
 	im = image.AddBackground(im)
 
 	err = image.AppendTime(im, wr, t)

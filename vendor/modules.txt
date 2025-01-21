@@ -1,7 +1,7 @@
 # github.com/aaronland/go-fpdf v0.0.3
 ## explicit; go 1.20
 github.com/aaronland/go-fpdf
-# github.com/aaronland/go-image v1.2.4
+# github.com/aaronland/go-image v1.3.1
 ## explicit; go 1.22.4
 github.com/aaronland/go-image/background
 github.com/aaronland/go-image/colour
@@ -10,7 +10,7 @@ github.com/aaronland/go-image/transform
 # github.com/aaronland/go-roster v1.0.0
 ## explicit; go 1.16
 github.com/aaronland/go-roster
-# github.com/dsoprea/go-exif/v3 v3.0.0-20221012082141-d21ac8e2de85
+# github.com/dsoprea/go-exif/v3 v3.0.1
 ## explicit; go 1.12
 github.com/dsoprea/go-exif/v3
 github.com/dsoprea/go-exif/v3/common
@@ -68,9 +68,16 @@ github.com/mandykoh/prism/displayp3
 github.com/mandykoh/prism/linear
 github.com/mandykoh/prism/linear/lut
 github.com/mandykoh/prism/matrix
+github.com/mandykoh/prism/meta
+github.com/mandykoh/prism/meta/autometa
+github.com/mandykoh/prism/meta/binary
+github.com/mandykoh/prism/meta/icc
+github.com/mandykoh/prism/meta/jpegmeta
+github.com/mandykoh/prism/meta/pngmeta
+github.com/mandykoh/prism/meta/webpmeta
 github.com/mandykoh/prism/srgb
-# github.com/sfomuseum/go-exif-update v0.1.2
-## explicit; go 1.18
+# github.com/sfomuseum/go-exif-update v0.1.3
+## explicit; go 1.22.4
 github.com/sfomuseum/go-exif-update
 github.com/sfomuseum/go-exif-update/tags
 # github.com/sfomuseum/go-flags v0.10.0
@@ -90,7 +97,7 @@ golang.org/x/image/font
 golang.org/x/image/font/basicfont
 golang.org/x/image/math/f64
 golang.org/x/image/math/fixed
-# golang.org/x/net v0.25.0
+# golang.org/x/net v0.28.0
 ## explicit; go 1.18
 golang.org/x/net/context
 # gopkg.in/yaml.v2 v2.4.0

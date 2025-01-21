@@ -1,10 +1,10 @@
 module github.com/aaronland/go-fingerprint
 
-go 1.22.4
+go 1.23
 
 require (
 	github.com/aaronland/go-fpdf v0.0.3
-	github.com/aaronland/go-image v1.2.4
+	github.com/aaronland/go-image v1.3.1
 	github.com/fogleman/gg v1.3.0
 	github.com/jung-kurt/gofpdf v1.16.2
 	github.com/sfomuseum/go-flags v0.10.0
@@ -12,7 +12,7 @@ require (
 
 require (
 	github.com/aaronland/go-roster v1.0.0 // indirect
-	github.com/dsoprea/go-exif/v3 v3.0.0-20221012082141-d21ac8e2de85 // indirect
+	github.com/dsoprea/go-exif/v3 v3.0.1 // indirect
 	github.com/dsoprea/go-iptc v0.0.0-20200609062250-162ae6b44feb // indirect
 	github.com/dsoprea/go-jpeg-image-structure/v2 v2.0.0-20221012074422-4f3f7e934102 // indirect
 	github.com/dsoprea/go-logging v0.0.0-20200710184922-b02d349568dd // indirect
@@ -24,10 +24,10 @@ require (
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/mandykoh/go-parallel v0.1.0 // indirect
 	github.com/mandykoh/prism v0.35.3 // indirect
-	github.com/sfomuseum/go-exif-update v0.1.2 // indirect
+	github.com/sfomuseum/go-exif-update v0.1.3 // indirect
 	github.com/sfomuseum/go-font-ocra v0.0.2 // indirect
 	github.com/whosonfirst/go-bindata-assetfs v1.0.1 // indirect
 	golang.org/x/image v0.18.0 // indirect
-	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/net v0.28.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
