@@ -28,6 +28,6 @@ require (
 	github.com/sfomuseum/go-font-ocra v0.0.2 // indirect
 	github.com/whosonfirst/go-bindata-assetfs v1.0.1 // indirect
 	golang.org/x/image v0.18.0 // indirect
-	golang.org/x/net v0.28.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
