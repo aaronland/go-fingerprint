@@ -41,7 +41,7 @@ func Convert(r io.ReadSeeker, wr io.Writer, max_dimension float64) (go_image.Ima
 	}
 
 	// im = colour.ToAdobeRGB(im)
-	im = colour.ToDisplayP3(im)	
+	im = colour.ToDisplayP3(im)
 	im = image.AddBackground(im)
 
 	err = image.AppendTime(im, wr, t)

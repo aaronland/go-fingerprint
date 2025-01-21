@@ -13,7 +13,11 @@ import (
 
 func main() {
 
-	max_dimension := flag.Float64("max-dimension", 4096, "The maximum dimension to scale an image to.")
+	var max_dimension float64
+	var target string
+
+	flag.Float64Var(&max_dimension, "max-dimension", 4096, "The maximum dimension to scale an image to.")
+	flag.StringVar(&target, "target", "", "A directory to write converted files. If empty image files will be written to the same directory as the source SVG file.")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Convert one or more fingerprint SVG documents in to JPEG images.\n\n")
@@ -35,6 +39,10 @@ func main() {
 		root := filepath.Dir(path)
 		fname := filepath.Base(path)
 
+		if target != "" {
+			root = target
+		}
+
 		out_fname := strings.Replace(fname, ".svg", ".jpg", 1)
 		out_path := filepath.Join(root, out_fname)
 
@@ -52,7 +60,7 @@ func main() {
 			log.Fatalf("Failed to open %s for writing, %v", out_path, err)
 		}
 
-		_, err = fingerprint.Convert(r, wr, *max_dimension)
+		_, err = fingerprint.Convert(r, wr, max_dimension)
 
 		if err != nil {
 			log.Fatalf("Failed to derive info for %s, %v", out_path, err)
