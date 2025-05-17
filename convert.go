@@ -9,7 +9,7 @@ import (
 
 	"github.com/aaronland/go-fingerprint/image"
 	"github.com/aaronland/go-fingerprint/svg"
-	"github.com/aaronland/go-image/colour"
+	"github.com/aaronland/go-image/v2/colour"
 )
 
 // Convert writes a fingerprint SVG document defined by 'r' to a JPEG image defined by 'wr'. The final

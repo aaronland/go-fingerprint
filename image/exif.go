@@ -6,7 +6,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/aaronland/go-image/exif"
+	"github.com/aaronland/go-image/v2/exif"
 )
 
 // AppendTime appends the RFC3339-encoded value or 't' to the JPEG encoding of 'im'

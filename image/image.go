@@ -4,7 +4,7 @@ import (
 	"image"
 	"image/color"
 
-	"github.com/aaronland/go-image/background"
+	"github.com/aaronland/go-image/v2/background"
 )
 
 // AddBackground draws 'im' on to a new `image.Image` instance of the same dimensions but with

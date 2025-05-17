@@ -35,7 +35,7 @@ func main() {
 	pdf_opts, err := fpdf.OptionsFromFlagSet(ctx, fs)
 
 	if err != nil {
-		log.Fatalf("Failed to derive options from flagset, %w", err)
+		log.Fatalf("Failed to derive options from flagset, %v", err)
 	}
 
 	for _, path := range fs.Args() {
@@ -43,7 +43,7 @@ func main() {
 		r, err := os.Open(path)
 
 		if err != nil {
-			log.Fatalf("Failed to open %s for reading, %w", path, err)
+			log.Fatalf("Failed to open %s for reading, %v", path, err)
 		}
 
 		defer r.Close()
@@ -53,7 +53,7 @@ func main() {
 		pdf_doc, err := pdf.FromReader(ctx, r, title, pdf_opts)
 
 		if err != nil {
-			log.Fatalf("Failed to create PDF from reader for %s, %w", path, err)
+			log.Fatalf("Failed to create PDF from reader for %s, %v", path, err)
 		}
 
 		pdf_path := fmt.Sprintf("%s.pdf", path)
@@ -62,7 +62,7 @@ func main() {
 		err = pdf_doc.Save(pdf_path)
 
 		if err != nil {
-			log.Fatalf("Failed to save %s, %w", pdf_path, err)
+			log.Fatalf("Failed to save %s, %v", pdf_path, err)
 		}
 
 		log.Println(pdf_path)
