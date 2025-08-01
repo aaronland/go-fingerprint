@@ -1,7 +1,7 @@
 github.com/aaronland/go-fpdf v0.0.3 h1:NX30IW45tM0uqy4PyxpGBxaKlLyZFWpObZ1AeQaJ+dY=
 github.com/aaronland/go-fpdf v0.0.3/go.mod h1:uJsYggs3Dqp20DAN1vWOpkbETBRnb19E0h3vMn9m2ak=
-github.com/aaronland/go-image/v2 v2.0.0 h1:s7MFMbZpUSV0WPAOWP58vwVwmPO6iynSFEPKBS2S7OI=
-github.com/aaronland/go-image/v2 v2.0.0/go.mod h1:F9dQW6Uqy6Ra18k/4zgLoeaQkc/wmIL3dmqb7YZCKjA=
+github.com/aaronland/go-image/v2 v2.1.2 h1:41/gJE6eP7buDaU6lBMWx9zAIXy1jgkdQIOGaao+wQo=
+github.com/aaronland/go-image/v2 v2.1.2/go.mod h1:f4LaEmnI5JU7yLzJm+ZbCVxHhcEbnYns1QeRr8hd0IY=
 github.com/aaronland/go-roster v1.0.0 h1:FRDGrTqsYySKjWnAhbBGXyeGlI/o5/t9FZYCbUmyQtI=
 github.com/aaronland/go-roster v1.0.0/go.mod h1:KIsYZgrJlAsyb9LsXSCvlqvbcCBVjCSqcQiZx42i9ro=
 github.com/boombuler/barcode v1.0.0/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
@@ -63,8 +63,8 @@ github.com/rwcarlsen/goexif v0.0.0-20190401172101-9e8deecbddbd h1:CmH9+J6ZSsIjUK
 github.com/rwcarlsen/goexif v0.0.0-20190401172101-9e8deecbddbd/go.mod h1:hPqNNc0+uJM6H+SuU8sEs5K5IQeKccPqeSjfgcKGgPk=
 github.com/sfomuseum/go-exif-update v0.2.0 h1:IQveBLg4VJzaFrfjI/1N8arVBVeMIvN6VoMt/vjGnuk=
 github.com/sfomuseum/go-exif-update v0.2.0/go.mod h1:ixvHSW5ZO2P1UyZBKc7mjju+8mtVHLz6WSHzQEKxIiA=
-github.com/sfomuseum/go-flags v0.10.0 h1:1OC1ACxpWMsl3XQ9OeNVMQj7Zi2CzufP3Rym3mPI8HU=
-github.com/sfomuseum/go-flags v0.10.0/go.mod h1:VXOnnX1/yxQpX2yiwHaBV6aCmhtszQOL5bL1/nNo3co=
+github.com/sfomuseum/go-flags v0.11.0 h1:HmMm5DgLxgz8iaNsvJ79dyRXjuAyX/fruqkBeHmopL0=
+github.com/sfomuseum/go-flags v0.11.0/go.mod h1:cUTByyudaM9d+iHwxsEpyYHemWVOGL/bqTRPIvydiC8=
 github.com/sfomuseum/go-font-ocra v0.0.2 h1:XwjquflF8YKajZlDh6/h0Rb/svX6Q+DoaZT11e6pYts=
 github.com/sfomuseum/go-font-ocra v0.0.2/go.mod h1:/xLmsSdTUdYdDS0rjBya6REWojyGCzB2D94aznIQn+w=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
@@ -78,8 +78,9 @@ golang.org/x/crypto v0.13.0/go.mod h1:y6Z2r+Rw4iayiXXAIxJIDAJ1zMW4yaTpebo8fPOliY
 golang.org/x/crypto v0.19.0/go.mod h1:Iy9bg/ha4yyC70EfRS8jz+B6ybOBKMaSxLj6P6oBDfU=
 golang.org/x/crypto v0.23.0/go.mod h1:CKFgDieR+mRhux2Lsu27y0fO304Db0wZe70UKqHu0v8=
 golang.org/x/image v0.0.0-20190910094157-69e4b8554b2a/go.mod h1:FeLwcggjj3mMvU+oOTbSwawSJRM1uh48EjtB4UJZlP0=
-golang.org/x/image v0.18.0 h1:jGzIakQa/ZXI1I0Fxvaa9W7yP25TqT6cHIHn+6CqvSQ=
 golang.org/x/image v0.18.0/go.mod h1:4yyo5vMFQjVjUcVk4jEQcU9MGy/rulF5WvUILseCM2E=
+golang.org/x/image v0.27.0 h1:C8gA4oWU/tKkdCfYT6T2u4faJu3MeNS5O8UPWlPF61w=
+golang.org/x/image v0.27.0/go.mod h1:xbdrClrAUway1MUTEZDq9mz/UpRwYAkFFNUslZtcB+g=
 golang.org/x/mod v0.6.0-dev.0.20220419223038-86c51ed26bb4/go.mod h1:jJ57K6gSWd91VN4djpZkiMVwK6gcyfeH4XE8wZrZaV4=
 golang.org/x/mod v0.8.0/go.mod h1:iBbtSCu2XBx23ZKBPSOrRkjjQPZFPuis4dIYUhu/chs=
 golang.org/x/mod v0.12.0/go.mod h1:iBbtSCu2XBx23ZKBPSOrRkjjQPZFPuis4dIYUhu/chs=
