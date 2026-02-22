@@ -60,7 +60,7 @@ func (l Line) Type() string {
 // DerivePathType returns a string identifier for the SVG path (`d` attribute) defined by 'd'.
 func DerivePathType(d string) string {
 
-	path_re, err := regexp.Compile(`^M\s{0,}\d+\,\d+\s{0,}(L|C)`)
+	path_re, err := regexp.Compile(`^M\s{0,}\d+(?:\.\d+)?\,\d+(?:\.\d+)?\s{0,}(L|C)`)
 
 	if err != nil {
 		return MISSING
