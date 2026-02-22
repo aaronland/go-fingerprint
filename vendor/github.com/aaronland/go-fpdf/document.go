@@ -6,7 +6,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/jung-kurt/gofpdf"
+	gofpdf "codeberg.org/go-pdf/fpdf"
 	"github.com/sfomuseum/go-font-ocra"
 )
 

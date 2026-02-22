@@ -11,10 +11,10 @@ import (
 	"os"
 	"time"
 
+	gofpdf "codeberg.org/go-pdf/fpdf"
 	"github.com/aaronland/go-fingerprint"
 	"github.com/aaronland/go-fingerprint/svg"
 	"github.com/aaronland/go-fpdf"
-	gofpdf "github.com/jung-kurt/gofpdf"
 )
 
 // FromReader will generate a `fpdf.Document` instance derived from 'r' (which is expected to be a valid fingerprint SVG
