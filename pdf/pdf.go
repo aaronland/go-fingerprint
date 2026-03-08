@@ -232,6 +232,24 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 
 	pdf.MultiCell(0, cell_h, string(enc_doc), "", "L", false)
 
+	// This is so that all new fingerprint drawings start on an odd-numbered
+	// page if/when multiple PDF files are merged together.
+	
+	if pdf.PageCount()%2 == 1 {
+
+		pdf.AddPage()
+		pdf.SetFooterFunc(func() {
+
+			x := pdf_doc.Margins.Left / pdf_doc.Options.DPI
+			y := (pdf_doc.Canvas.Height + (pdf_doc.Margins.Top * 1.35)) / pdf_doc.Options.DPI
+
+			pdf.SetXY(x, y)
+			pdf.SetFont("Courier", "", 6)
+			pdf.SetTextColor(128, 128, 128)
+			pdf.CellFormat(0, cell_h, "This page left intentionally blank", "", 0, "C", false, 0, "")
+		})
+	}
+
 	//
 
 	return pdf_doc, nil
