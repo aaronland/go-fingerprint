@@ -45,7 +45,7 @@ func main() {
 			root = target
 		}
 
-		out_fname := strings.Replace(fname, ".svg", ".jpg", 1)
+		out_fname := strings.Replace(fname, ".svg", "-outline.jpg", 1)
 		out_path := filepath.Join(root, out_fname)
 
 		r, err := os.Open(path)
@@ -62,7 +62,7 @@ func main() {
 			log.Fatalf("Failed to open %s for writing, %v", out_path, err)
 		}
 
-		_, err = fingerprint.Convert(r, wr, max_dimension)
+		_, err = fingerprint.Outline(r, wr, max_dimension)
 
 		if err != nil {
 			log.Fatalf("Failed to derive info for %s, %v", out_path, err)
