@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	_ "log"
 	"math"
 	"os"
 	"time"
@@ -131,6 +130,8 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 
 	info.SetDpi(pdf_doc.Options.DPI)
 
+	//
+
 	// Remember: margins have been calculated inclusive of page bleeds
 
 	margins := pdf_doc.Margins
@@ -190,7 +191,32 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 
 	// END OF make this a convenience method in aaronland/go-fpdf
 
+	// Render outline (re-use pre-calculated variables from above)
+
+	r.Seek(0, 0)
 	pdf.AddPage()
+
+	outline_wr, err := os.CreateTemp("", "fingerprint-outline.*.jpg")
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to create temporary outline image file, %w", err)
+	}
+
+	defer os.Remove(outline_wr.Name())
+
+	_, err = fingerprint.Outline(r, outline_wr, max_d)
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to create outline image, %w", err)
+	}
+
+	err = outline_wr.Close()
+
+	if err != nil {
+		return nil, fmt.Errorf("Failed to close outline image writer, %w", err)
+	}
+
+	pdf.ImageOptions(outline_wr.Name(), image_x, image_y, image_w, image_h, false, image_opts, 0, "")
 
 	// Write the data to the PDF
 
