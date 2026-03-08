@@ -15,9 +15,11 @@ func main() {
 
 	var max_dimension float64
 	var target string
+	var nofill bool
 
 	flag.Float64Var(&max_dimension, "max-dimension", 4096, "The maximum dimension to scale an image to.")
 	flag.StringVar(&target, "target", "", "A directory to write converted files. If empty image files will be written to the same directory as the source SVG file.")
+	flag.BoolVar(&nofill, "no-fill", false, "...")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Convert one or more fingerprint SVG documents in to JPEG images.\n\n")

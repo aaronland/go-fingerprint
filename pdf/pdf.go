@@ -52,6 +52,7 @@ func FromReader(ctx context.Context, r io.ReadSeeker, title string, opts *fpdf.O
 	}
 
 	pdf := pdf_doc.PDF
+	pdf.SetCreationDate(t)
 
 	pdf.SetTextColor(0, 0, 0)
 	pdf.SetFont("Helvetica", "", 6)
