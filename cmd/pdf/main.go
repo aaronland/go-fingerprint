@@ -2,11 +2,11 @@ package main
 
 /*
 
-> ./bin/pdf -root ~/aaronland/fingerprint-pdf -group-by-year ~/aaronland/fingerprint/fingerprint*.svg
-2026/03/08 10:35:08 /Users/asc/aaronland/fingerprint-pdf/2023/2023-03-13-fingerprint-1678772041.svg.pdf
-2026/03/08 10:35:08 /Users/asc/aaronland/fingerprint-pdf/2023/2023-03-17-fingerprint-1679068267.svg.pdf
-2026/03/08 10:35:08 /Users/asc/aaronland/fingerprint-pdf/2023/2023-03-19-fingerprint-1679211124.svg.pdf
-2026/03/08 10:35:08 /Users/asc/aaronland/fingerprint-pdf/2023/2023-03-19-fingerprint-1679239781.svg.pdf
+> ./bin/pdf -root /usr/local/data/fingerprint-pdf -group-by-year /usr/local/data/fingerprint/fingerprint*.svg
+2026/03/08 10:35:08 /usr/local/data/fingerprint-pdf/2023/2023-03-13-fingerprint-1678772041.svg.pdf
+2026/03/08 10:35:08 /usr/local/data/fingerprint-pdf/2023/2023-03-17-fingerprint-1679068267.svg.pdf
+2026/03/08 10:35:08 /usr/local/data/fingerprint-pdf/2023/2023-03-19-fingerprint-1679211124.svg.pdf
+2026/03/08 10:35:08 /usr/local/data/fingerprint-pdf/2023/2023-03-19-fingerprint-1679239781.svg.pdf
 ...
 
 */

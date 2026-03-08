@@ -53,3 +53,34 @@ func (doc *Document) ToImage(max_dimension float64) (image.Image, error) {
 
 	return dc.Image(), nil
 }
+
+func (doc *Document) ToOutline(max_dimension float64) (image.Image, error) {
+
+	w := doc.Width
+	h := doc.Height
+
+	scale := 1.0
+
+	max := math.Max(float64(w), float64(h))
+
+	if max_dimension > max {
+		scale = max_dimension / max
+	}
+
+	w = int(float64(w) * scale)
+	h = int(float64(h) * scale)
+
+	dc := gg.NewContext(w, h)
+
+	for idx, p := range doc.Paths {
+
+		err := p.DrawOutline(dc, scale)
+
+		if err != nil {
+			slog.Warn("Failed to draw path", "offset", idx, "error", err)
+			continue
+		}
+	}
+
+	return dc.Image(), nil
+}
