@@ -5,12 +5,14 @@ go 1.25.0
 require (
 	codeberg.org/go-pdf/fpdf v0.11.1
 	github.com/aaronland/go-fpdf v0.0.4
-	github.com/aaronland/go-image/v2 v2.1.4
+	github.com/aaronland/go-image-halftone/v2 v2.0.0
+	github.com/aaronland/go-image/v2 v2.1.5
 	github.com/fogleman/gg v1.3.0
 	github.com/sfomuseum/go-flags v0.12.1
 )
 
 require (
+	github.com/MaxHalford/halfgone v0.0.0-20171017091812-482157b86ccb // indirect
 	github.com/aaronland/go-roster v1.0.0 // indirect
 	github.com/dsoprea/go-exif/v3 v3.0.1 // indirect
 	github.com/dsoprea/go-iptc v0.0.0-20200609062250-162ae6b44feb // indirect
@@ -24,10 +26,11 @@ require (
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/mandykoh/go-parallel v0.1.0 // indirect
 	github.com/mandykoh/prism v0.35.3 // indirect
+	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 // indirect
 	github.com/sfomuseum/go-exif-update v0.2.1 // indirect
 	github.com/sfomuseum/go-font-ocra v0.0.2 // indirect
 	github.com/whosonfirst/go-bindata-assetfs v1.0.1 // indirect
-	golang.org/x/image v0.32.0 // indirect
-	golang.org/x/net v0.43.0 // indirect
+	golang.org/x/image v0.38.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
