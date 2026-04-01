@@ -1,11 +1,13 @@
 package svg
 
 import (
+	"context"
 	"image"
 	"log/slog"
 	"math"
 
 	"github.com/fogleman/gg"
+	"github.com/aaronland/go-image-halftone/v2"
 )
 
 // Document defines a struct representing a fingerprint SVG document. At this time it is not
@@ -52,6 +54,20 @@ func (doc *Document) ToImage(max_dimension float64) (image.Image, error) {
 	}
 
 	return dc.Image(), nil
+}
+
+func (doc *Document) ToHalftone(max_dimension float64) (image.Image, error) {
+
+	im, err := doc.ToImage(max_dimension)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ctx := context.Background()
+	opts := halftone.NewDefaultHalftoneOptions()
+
+	return halftone.HalftoneImage(ctx, im, opts)
 }
 
 func (doc *Document) ToOutline(max_dimension float64) (image.Image, error) {

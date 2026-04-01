@@ -1,6 +1,13 @@
 GOMOD=$(shell test -f "go.work" && echo "readonly" || echo "vendor")
+LDFLAGS=-s -w
+
+CWD=$(shell pwd)
+
+vuln:
+	govulncheck -show verbose ./...
 
 cli:
 	go build -mod $(GOMOD) -ldflags="-s -w" -o bin/convert cmd/convert/main.go
 	go build -mod $(GOMOD) -ldflags="-s -w" -o bin/outline cmd/outline/main.go
+	go build -mod $(GOMOD) -ldflags="-s -w" -o bin/halftone cmd/halftone/main.go
 	go build -mod $(GOMOD) -ldflags="-s -w" -o bin/pdf cmd/pdf/main.go
